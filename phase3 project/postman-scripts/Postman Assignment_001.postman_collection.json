@@ -1,0 +1,263 @@
+{
+	"info": {
+		"_postman_id": "06df3854-9116-4f9d-9a04-c5ae02ede0e7",
+		"name": "Postman Assignment_001",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32291697"
+	},
+	"item": [
+		{
+			"name": "Authorization",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"apiresponse in json\",()=>{\r",
+							"    var xmldata = xml2Json(pm.response.text())\r",
+							"    pm.expect(xmldata['apiResponse']).to.be.an('object')\r",
+							"}) \r",
+							"\r",
+							"pm.test(\"apiresponse have property message\",()=>{\r",
+							"    var xmldata = xml2Json(pm.response.text())\r",
+							"    pm.expect(xmldata['apiResponse']).to.have.property('message')\r",
+							"    pm.expect(xmldata['apiResponse']['message']).to.be.a('string')\r",
+							"})\r",
+							"\r",
+							"pm.test(\"apiresponse have property message equals Test\",()=>{\r",
+							"    var xmldata = xml2Json(pm.response.text())\r",
+							"    pm.expect(xmldata['apiResponse']).to.have.property('message')\r",
+							"    pm.expect(xmldata['apiResponse']['message']).to.be.eql('null for uri: http://petstore.swagger.io/v2/pet%0A')\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 24,\r\n  \"category\": {\r\n    \"id\": 0,\r\n    \"name\": \"string\"\r\n  },\r\n  \"name\": \"cat\",\r\n  \"photoUrls\": [\r\n    \"string\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 0,\r\n      \"name\": \"string\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/pet\n",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"pet\n"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Validate Pet-ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response has coord property\",function() {\r",
+							"    var jsondata = pm.response.json()\r",
+							"    pm.expect(jsondata).to.have.property('coord');\r",
+							"    pm.expect(jsondata).to.be.an('object');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response has weather property\",function() {\r",
+							"    var jsondata = pm.response.json()\r",
+							"    pm.expect(jsondata).to.have.property('weather');\r",
+							"    pm.expect(jsondata).to.be.an('object');\r",
+							"});\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.base).to.eql('stations');\r",
+							"    console.log(jsonData.base)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response has id property\",function() {\r",
+							"    var jsondata = pm.response.json()\r",
+							"    pm.expect(jsondata).to.have.property('id');\r",
+							"    \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.dt).to.eql(1485789600);\r",
+							"    console.log(jsonData.dt)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.eql(\"London\");\r",
+							"    console.log(jsonData.name)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.cod).to.eql(200);\r",
+							"    console.log(jsonData.cod)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.weather[0].main).to.eql(\"Drizzle\");\r",
+							"    \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.weather[0].description).to.eql(\"light intensity drizzle\");\r",
+							"    \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.main.temp).to.eql(280.32);\r",
+							"    \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.clouds.all).to.eql(90);\r",
+							"    \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.wind.speed).to.eql(4.1);\r",
+							"    \r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://samples.openweathermap.org/data/2.5/weather?q=London,uk&appid=b6907d289e10d714a6e88b30761fae22",
+					"protocol": "https",
+					"host": [
+						"samples",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "London,uk"
+						},
+						{
+							"key": "appid",
+							"value": "b6907d289e10d714a6e88b30761fae22"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/pet/24\n",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"pet",
+						"24\n"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create pet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check the id is 2\",() =>{\r",
+							"    var jsonData = pm.response.json()\r",
+							"    pm.expect(jsonData.id).to.be.eq(24)\r",
+							"\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Check the id is 2\",() =>{\r",
+							"    var jsonData = pm.response.json()\r",
+							"    pm.expect(jsonData.status).to.be.eq(\"available\")\r",
+							"\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 24,\r\n  \"category\": {\r\n    \"id\": 0,\r\n    \"name\": \"string\"\r\n  },\r\n  \"name\": \"cat\",\r\n  \"photoUrls\": [\r\n    \"string\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 0,\r\n      \"name\": \"string\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/pet",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"pet"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

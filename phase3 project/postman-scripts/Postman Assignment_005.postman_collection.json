@@ -1,0 +1,18 @@
+{
+	"info": {
+		"_postman_id": "5f52cb08-85bd-42b0-99ab-25590193c357",
+		"name": "Postman Assignment_005",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32291697"
+	},
+	"item": [
+		{
+			"name": "Logout",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}

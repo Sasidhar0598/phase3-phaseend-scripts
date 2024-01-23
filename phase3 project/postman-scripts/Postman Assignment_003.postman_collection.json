@@ -1,0 +1,85 @@
+{
+	"info": {
+		"_postman_id": "30dcedfb-64f3-4dba-94cc-27c74e52f9d7",
+		"name": "Postman Assignment_003",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32291697"
+	},
+	"item": [
+		{
+			"name": "Get user request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validate email\",()=>{\r",
+							"    pm.expect(pm.response.json().email).to.be.eq(\"Positive@Attitude.com\")\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Validate email\",()=>{\r",
+							"    pm.expect(pm.response.json().userStatus).to.be.eq(1)\r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/user/{{Uname}}",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"user",
+						"{{Uname}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n  {\r\n    \"id\": 0,\r\n    \"username\": \"Uname001\",\r\n    \"firstName\": \"john\",\r\n    \"lastName\": \"wick\",\r\n    \"email\": \"Positive@Attitude.com\",\r\n    \"password\": \"str\",\r\n    \"phone\": \"stg\",\r\n    \"userStatus\": 1\r\n  }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/user/createWithList",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"user",
+						"createWithList"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
